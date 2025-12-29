@@ -1,11 +1,18 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "neon",
-  "displayName": "Neon Plugins",
-  "description": "Neon serverless PostgreSQL integration plugins",
+  "description": "Neon serverless PostgreSQL integration plugins for Claude Code",
+  "owner": {
+    "name": "Innocraft Systems",
+    "email": "support@innocraft.systems"
+  },
   "plugins": [
     {
       "name": "neon-plugin",
-      "path": "."
+      "description": "Complete Neon serverless PostgreSQL integration with Drizzle ORM, Auth, Vector/RAG, and MCP support",
+      "source": "./",
+      "category": "database",
+      "homepage": "https://github.com/innocraft-systems/neon-plugin"
     }
   ]
 }
