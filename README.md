@@ -15,7 +15,11 @@ A comprehensive Claude Code plugin for Neon serverless PostgreSQL integration. C
 ### From GitHub (Recommended)
 
 ```bash
-claude plugins add innocraft-systems/plugin
+# Add the marketplace
+claude plugin marketplace add innocraft-systems/neon-plugin
+
+# Install the plugin
+claude plugin install neon-plugin@neon
 ```
 
 ### Local Development
