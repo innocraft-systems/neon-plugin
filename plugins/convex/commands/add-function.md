@@ -44,6 +44,14 @@ Create a new Convex function with proper typing and structure.
        return await ctx.db.query("tableName").collect();
      },
    });
+
+   // Query by ID (convex 1.31.0+ syntax)
+   export const getById = query({
+     args: { id: v.id("tableName") },
+     handler: async (ctx, args) => {
+       return await ctx.db.get("tableName", args.id);
+     },
+   });
    ```
 
    **Mutation:**
@@ -51,13 +59,28 @@ Create a new Convex function with proper typing and structure.
    import { mutation } from "./_generated/server";
    import { v } from "convex/values";
 
-   export const functionName = mutation({
-     args: {
-       // Define arguments
-     },
+   // Insert (create)
+   export const create = mutation({
+     args: { /* fields */ },
      handler: async (ctx, args) => {
-       // Write to database
        return await ctx.db.insert("tableName", { ...args });
+     },
+   });
+
+   // Update (convex 1.31.0+ syntax - table name first)
+   export const update = mutation({
+     args: { id: v.id("tableName"), /* fields to update */ },
+     handler: async (ctx, args) => {
+       const { id, ...fields } = args;
+       await ctx.db.patch("tableName", id, fields);
+     },
+   });
+
+   // Delete (convex 1.31.0+ syntax - table name first)
+   export const remove = mutation({
+     args: { id: v.id("tableName") },
+     handler: async (ctx, args) => {
+       await ctx.db.delete("tableName", args.id);
      },
    });
    ```
@@ -121,4 +144,5 @@ Create a new Convex function with proper typing and structure.
 - Mutations are for writing data (transactional)
 - Actions are for external API calls (not transactional)
 - Use internal functions for scheduled jobs
+- **convex 1.31.0+**: Use explicit table names for `db.get`, `db.patch`, `db.delete`
 - Reference the convex skill for detailed patterns
