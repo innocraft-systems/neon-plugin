@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Complete Neon serverless PostgreSQL integration - Drizzle ORM, serverless driver, ephemeral databases, Neon Auth, unified SDK, MCP server, and vector/RAG with hybrid search",
   "author": {
-    "name": "Neon Plugin Developer"
+    "name": "Innocraft Systems",
+    "email": "support@innocraft.systems"
   },
+  "homepage": "https://github.com/innocraft-systems/innocraft-plugin/tree/main/plugins/neon",
+  "repository": "https://github.com/innocraft-systems/innocraft-plugin",
   "keywords": [
     "neon",
     "postgres",

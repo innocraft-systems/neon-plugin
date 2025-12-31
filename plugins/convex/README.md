@@ -5,7 +5,19 @@ Complete Convex reactive backend development. Covers functions (queries, mutatio
 ## Features
 
 - **Comprehensive Skill**: Auto-triggering knowledge for all Convex development
+- **Setup Commands**: Quick commands for common setup tasks
 - **Reference Documentation**: Detailed guides for each Convex feature
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `/convex:init` | Initialize a new Convex project or add to existing |
+| `/convex:setup-auth` | Set up Convex Auth (OAuth, passwords, magic links) |
+| `/convex:setup-clerk` | Configure Clerk authentication integration |
+| `/convex:add-function` | Create a new query, mutation, action, or HTTP action |
+| `/convex:add-cron` | Add a cron job or scheduled function |
+| `/convex:deploy` | Deploy functions to production |
 
 ## Skill
 

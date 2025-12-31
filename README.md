@@ -53,6 +53,7 @@ Complete Neon serverless PostgreSQL integration.
 - `/neon:create-ephemeral-db` - Create test database
 - `/neon:setup-vector` - Set up vector/RAG infrastructure
 - `/neon:setup-mcp` - Configure MCP server
+- `/neon:add-docs` - Add Neon best practices documentation
 
 **Agents:** `neon-setup-verifier`, `neon-migration-helper`
 
@@ -65,6 +66,14 @@ Complete Neon serverless PostgreSQL integration.
 Complete Convex reactive backend development.
 
 **Skills:** `convex`
+
+**Commands:**
+- `/convex:init` - Initialize a new Convex project
+- `/convex:setup-auth` - Set up Convex Auth (OAuth, passwords, magic links)
+- `/convex:setup-clerk` - Configure Clerk authentication
+- `/convex:add-function` - Create a new function (query/mutation/action)
+- `/convex:add-cron` - Add a cron job or scheduled function
+- `/convex:deploy` - Deploy functions to production
 
 **Capabilities:**
 - Functions (queries, mutations, actions, HTTP actions)

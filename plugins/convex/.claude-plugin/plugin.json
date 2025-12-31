@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Complete Convex backend development - functions (queries, mutations, actions), database (schema, indexes), Convex Auth (OAuth, Magic Links, Passwords), file storage, scheduling (cron jobs), and real-time reactive backends",
   "author": {
-    "name": "Convex Plugin Developer"
+    "name": "Innocraft Systems",
+    "email": "support@innocraft.systems"
   },
+  "homepage": "https://github.com/innocraft-systems/innocraft-plugin/tree/main/plugins/convex",
+  "repository": "https://github.com/innocraft-systems/innocraft-plugin",
   "keywords": [
     "convex",
     "backend",
