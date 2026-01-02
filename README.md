@@ -8,6 +8,7 @@ A curated collection of backend development plugins for Claude Code.
 |--------|-------------|
 | [**neon**](plugins/neon/) | Neon serverless PostgreSQL - Drizzle ORM, serverless driver, auth, MCP, vectors |
 | [**convex**](plugins/convex/) | Convex reactive backend - functions, database, auth, file storage, scheduling |
+| [**kenya-payments**](plugins/kenya-payments/) | Kenya payments - Kopokopo, Daraja (M-Pesa), Pesapal, Intasend |
 
 ## Installation
 
@@ -26,6 +27,9 @@ claude plugin install neon
 
 # Install Convex plugin
 claude plugin install convex
+
+# Install Kenya Payments plugin
+claude plugin install kenya-payments
 ```
 
 ### Local Development
@@ -84,6 +88,30 @@ Complete Convex reactive backend development.
 - Third-party auth (Clerk, Auth0)
 
 [Full documentation](plugins/convex/README.md)
+
+---
+
+### Kenya Payments Plugin
+
+Complete Kenya payment gateway integrations.
+
+**Skills:** `kopokopo`, `daraja`, `pesapal`, `intasend`
+
+**Providers:**
+- **Kopokopo (K2 Connect)** - M-Pesa buy goods, STK Push, PAY recipients
+- **Safaricom Daraja** - M-Pesa Express, C2B, B2C, reversals
+- **Pesapal API 3.0** - Cards, M-Pesa, MTN, recurring payments
+- **Intasend** - M-Pesa, PesaLink bank payouts, wallets
+
+**Capabilities:**
+- STK Push payment collection
+- B2C disbursements (salary, refunds)
+- C2B paybill/till integration
+- Bank transfers (PesaLink)
+- Webhooks and IPN notifications
+- Multi-currency support
+
+[Full documentation](plugins/kenya-payments/README.md)
 
 ---
 

@@ -1,0 +1,27 @@
+{
+  "name": "kenya-payments",
+  "version": "1.0.0",
+  "description": "Complete Kenya payments integration - Kopokopo (K2 Connect), Safaricom Daraja (M-Pesa), Pesapal API 3.0, and Intasend. STK Push, B2C, C2B, webhooks, bank payouts.",
+  "author": {
+    "name": "Innocraft Systems",
+    "email": "support@innocraft.systems"
+  },
+  "homepage": "https://github.com/innocraft-systems/innocraft-plugin/tree/main/plugins/kenya-payments",
+  "repository": "https://github.com/innocraft-systems/innocraft-plugin",
+  "keywords": [
+    "kenya",
+    "payments",
+    "mpesa",
+    "daraja",
+    "kopokopo",
+    "pesapal",
+    "intasend",
+    "mobile-money",
+    "stk-push",
+    "b2c",
+    "c2b",
+    "safaricom",
+    "pesalink"
+  ],
+  "license": "MIT"
+}
