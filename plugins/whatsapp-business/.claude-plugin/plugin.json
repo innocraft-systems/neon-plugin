@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "whatsapp-business",
+  "version": "1.0.0",
+  "description": "WhatsApp Business Cloud API integration - messaging, templates, webhooks, and interactive messages",
+  "skills": [
+    "skills/whatsapp-cloud-api",
+    "skills/whatsapp-templates",
+    "skills/whatsapp-webhooks"
+  ]
+}

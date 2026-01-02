@@ -10,6 +10,7 @@ A curated collection of backend development plugins for Claude Code.
 | [**convex**](plugins/convex/) | Convex reactive backend - functions, database, auth, file storage, scheduling |
 | [**kenya-payments**](plugins/kenya-payments/) | Kenya payments - Kopokopo, Daraja (M-Pesa), Pesapal, Intasend |
 | [**kra-etims**](plugins/kra-etims/) | KRA eTIMS tax compliance - invoicing, stock, OSCU/VSCU |
+| [**whatsapp-business**](plugins/whatsapp-business/) | WhatsApp Business Cloud API - messaging, templates, webhooks |
 
 ## Installation
 
@@ -34,6 +35,9 @@ claude plugin install kenya-payments
 
 # Install KRA eTIMS plugin
 claude plugin install kra-etims
+
+# Install WhatsApp Business plugin
+claude plugin install whatsapp-business
 ```
 
 ### Local Development
@@ -140,6 +144,31 @@ Kenya Revenue Authority Electronic Tax Invoice Management System integration.
 - Stock movements must be tracked
 
 [Full documentation](plugins/kra-etims/README.md)
+
+---
+
+### WhatsApp Business Plugin
+
+Complete WhatsApp Business Cloud API integration.
+
+**Skills:** `whatsapp-cloud-api`, `whatsapp-templates`, `whatsapp-webhooks`
+
+**Capabilities:**
+- Send text, images, documents, locations
+- Interactive messages (buttons, lists)
+- Message templates for notifications
+- Webhooks for receiving messages
+- Delivery and read receipts
+- Multi-tenant support
+
+**Use Cases:**
+- Order notifications and updates
+- Customer support automation
+- Payment confirmations
+- Delivery tracking
+- Marketing campaigns
+
+[Full documentation](plugins/whatsapp-business/README.md)
 
 ---
 

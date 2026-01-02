@@ -34,6 +34,13 @@
       "source": "./plugins/kra-etims",
       "category": "compliance",
       "homepage": "https://github.com/innocraft-systems/innocraft-plugin"
+    },
+    {
+      "name": "whatsapp-business",
+      "description": "WhatsApp Business Cloud API integration - messaging, templates, webhooks, interactive messages. Send notifications, handle customer inquiries, and automate conversations.",
+      "source": "./plugins/whatsapp-business",
+      "category": "messaging",
+      "homepage": "https://github.com/innocraft-systems/innocraft-plugin"
     }
   ]
 }
