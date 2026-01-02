@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "whatsapp-status",
+  "version": "1.0.0",
+  "description": "WhatsApp Status content generator using Nano Banana AI - image templates, video generation, and scheduling reminders for Kenya businesses",
+  "skills": [
+    "skills/status-images",
+    "skills/status-videos",
+    "skills/status-scheduler"
+  ]
+}

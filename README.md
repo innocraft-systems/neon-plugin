@@ -11,6 +11,9 @@ A curated collection of backend development plugins for Claude Code.
 | [**kenya-payments**](plugins/kenya-payments/) | Kenya payments - Kopokopo, Daraja (M-Pesa), Pesapal, Intasend |
 | [**kra-etims**](plugins/kra-etims/) | KRA eTIMS tax compliance - invoicing, stock, OSCU/VSCU |
 | [**whatsapp-business**](plugins/whatsapp-business/) | WhatsApp Business Cloud API - messaging, templates, webhooks |
+| [**meta-business**](plugins/meta-business/) | Meta Business Suite - Facebook Pages, Instagram posting, analytics |
+| [**whatsapp-status**](plugins/whatsapp-status/) | WhatsApp Status content generator - Nano Banana AI, scheduling |
+| [**gemini-ai**](plugins/gemini-ai/) | Google Gemini API - all models, multimodal, Live API, Nano Banana |
 
 ## Installation
 
@@ -38,6 +41,15 @@ claude plugin install kra-etims
 
 # Install WhatsApp Business plugin
 claude plugin install whatsapp-business
+
+# Install Meta Business plugin
+claude plugin install meta-business
+
+# Install WhatsApp Status plugin
+claude plugin install whatsapp-status
+
+# Install Gemini AI plugin
+claude plugin install gemini-ai
 ```
 
 ### Local Development
@@ -169,6 +181,67 @@ Complete WhatsApp Business Cloud API integration.
 - Marketing campaigns
 
 [Full documentation](plugins/whatsapp-business/README.md)
+
+---
+
+### Meta Business Plugin
+
+Facebook Pages and Instagram Business API integration.
+
+**Skills:** `meta-pages`, `meta-instagram`, `meta-insights`
+
+**Capabilities:**
+- Facebook Page posting (text, photos, videos, links)
+- Instagram posting (images, carousels, reels, stories)
+- Post scheduling
+- Comment management
+- Engagement analytics
+
+[Full documentation](plugins/meta-business/README.md)
+
+---
+
+### WhatsApp Status Plugin
+
+AI-powered content generation for WhatsApp Status.
+
+**Skills:** `status-images`, `status-videos`, `status-scheduler`
+
+**Capabilities:**
+- Image generation with Nano Banana (Gemini)
+- Product showcases, promo banners, price lists
+- Video slideshows and animations
+- Scheduling reminders
+- Kenya-specific templates (M-Pesa badges, KES formatting)
+
+**Note:** WhatsApp Status cannot be automated - this generates content for manual posting.
+
+[Full documentation](plugins/whatsapp-status/README.md)
+
+---
+
+### Gemini AI Plugin
+
+Complete Google Gemini API integration.
+
+**Skills:** `gemini-models`, `gemini-multimodal`, `gemini-live`
+
+**Models Covered:**
+- Gemini 1.5 Flash/Pro (fast, long context)
+- Gemini 2.0 Flash (agentic, tool calling)
+- Gemini 2.5 Flash/Pro (thinking, image gen)
+- Gemini 3 Pro (state-of-the-art)
+- Nano Banana (image generation)
+- Veo (video generation)
+- Live API (real-time voice/video)
+
+**Features:**
+- Direct API and OpenRouter support
+- Multimodal (vision, audio, video)
+- Function calling
+- Streaming responses
+
+[Full documentation](plugins/gemini-ai/README.md)
 
 ---
 

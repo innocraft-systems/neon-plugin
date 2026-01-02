@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "meta-business",
+  "version": "1.0.0",
+  "description": "Meta Business Suite integration - Facebook Pages and Instagram Business posting, scheduling, and analytics",
+  "skills": [
+    "skills/meta-pages",
+    "skills/meta-instagram",
+    "skills/meta-insights"
+  ]
+}

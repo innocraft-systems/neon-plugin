@@ -41,6 +41,27 @@
       "source": "./plugins/whatsapp-business",
       "category": "messaging",
       "homepage": "https://github.com/innocraft-systems/innocraft-plugin"
+    },
+    {
+      "name": "meta-business",
+      "description": "Meta Business Suite integration - Facebook Pages and Instagram Business posting, scheduling, analytics. Post photos, videos, carousels, reels, and track engagement.",
+      "source": "./plugins/meta-business",
+      "category": "social",
+      "homepage": "https://github.com/innocraft-systems/innocraft-plugin"
+    },
+    {
+      "name": "whatsapp-status",
+      "description": "WhatsApp Status content generator using Nano Banana AI - image templates, video generation, scheduling reminders. Create professional Status content for Kenya businesses.",
+      "source": "./plugins/whatsapp-status",
+      "category": "content",
+      "homepage": "https://github.com/innocraft-systems/innocraft-plugin"
+    },
+    {
+      "name": "gemini-ai",
+      "description": "Complete Google Gemini API integration - all models (1.5 to 3.0), multimodal (vision, audio), image generation (Nano Banana), video generation (Veo), Live API for real-time voice chat. Direct API and OpenRouter support.",
+      "source": "./plugins/gemini-ai",
+      "category": "ai",
+      "homepage": "https://github.com/innocraft-systems/innocraft-plugin"
     }
   ]
 }

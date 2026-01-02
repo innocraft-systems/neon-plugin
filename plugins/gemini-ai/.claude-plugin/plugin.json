@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "gemini-ai",
+  "version": "1.0.0",
+  "description": "Complete Google Gemini API integration - all models from 1.5 to 3.0, multimodal, Live API, image/video generation (Nano Banana, Veo), with guidance on direct API vs OpenRouter",
+  "skills": [
+    "skills/gemini-models",
+    "skills/gemini-multimodal",
+    "skills/gemini-live"
+  ]
+}
