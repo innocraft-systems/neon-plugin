@@ -1,0 +1,37 @@
+{
+  "name": "innocraft-plugins",
+  "owner": {
+    "name": "Innocraft Systems",
+    "email": "plugins@innocraft.systems"
+  },
+  "metadata": {
+    "description": "Innocraft Systems plugin marketplace for Claude Code. Includes BMAD-Evals for automated sprint execution and agent evaluation.",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "bmad-evals",
+      "source": "./plugins/bmad-evals",
+      "description": "BMAD-Evals: Automated sprint execution with cross-context persistence. Run 100+ stories unattended with /sprint-run. Includes dependency-aware story chaining, RAG integration, TDD enforcement, and comprehensive dev permissions.",
+      "version": "2.0.0",
+      "author": {
+        "name": "Innocraft Systems"
+      },
+      "homepage": "https://github.com/innocraft-systems/innocraft-plugin",
+      "repository": "https://github.com/innocraft-systems/innocraft-plugin",
+      "license": "MIT",
+      "category": "development",
+      "tags": [
+        "evals",
+        "bmad",
+        "sprint-runner",
+        "automated-development",
+        "agent-evaluation",
+        "graders",
+        "tdd",
+        "rag-integration"
+      ]
+    }
+  ]
+}
