@@ -1,17 +1,19 @@
 {
   "name": "bmad-evals",
-  "version": "1.0.0",
-  "description": "BMAD-Evals: A hybrid plugin combining BMAD methodology structured test creation with automated eval execution via Ralph-wiggum loops. Provides comprehensive agent evaluation infrastructure with transcript capture, multi-grader support, and pass@k/pass^k metrics.",
+  "version": "2.0.0",
+  "description": "BMAD-Evals: Automated sprint execution with Ralph-wiggum persistence. Run 100+ stories unattended with /sprint-run. Includes dependency-aware story chaining, cross-context persistence, TDD enforcement, and comprehensive dev permissions to prevent interruptions.",
   "author": {
     "name": "BMAD-Evals Plugin"
   },
   "keywords": [
     "evals",
     "bmad",
-    "testing",
+    "sprint-runner",
     "ralph-wiggum",
+    "automated-development",
     "agent-evaluation",
-    "graders"
+    "graders",
+    "unattended-builds"
   ],
   "dependencies": {
     "requires_bmad": false,

@@ -1,7 +1,15 @@
 {
-  "description": "BMAD-Evals plugin hooks for eval loops, grading, and BMAD story harness",
+  "description": "BMAD-Evals plugin hooks for sprint runner, eval loops, grading, and BMAD story harness",
   "hooks": {
     "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/sprint-runner-hook.sh"
+          }
+        ]
+      },
       {
         "hooks": [
           {
