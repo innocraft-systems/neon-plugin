@@ -62,6 +62,66 @@ SPRINT_DIR=".claude/sprint-runner"
 STATE_FILE="$SPRINT_DIR/sprint.state.json"
 BMAD_OUTPUT="_bmad-output"
 SPRINT_STATUS="$BMAD_OUTPUT/sprint-status.yaml"
+BMM_CONFIG="_bmad/bmm/config.yaml"
+
+# Story location detection
+# Priority:
+#   1. story_location in sprint-status.yaml (authoritative)
+#   2. implementation_artifacts from _bmad/bmm/config.yaml + /stories
+#   3. Fallback search order
+STORY_LOCATION=""
+
+detect_story_location() {
+  # 1. Check sprint-status.yaml for story_location key
+  if [[ -f "$SPRINT_STATUS" ]]; then
+    local loc=$(grep -E "^story_location:" "$SPRINT_STATUS" 2>/dev/null | sed 's/story_location:\s*//' | tr -d '"' | tr -d "'" | xargs)
+    if [[ -n "$loc" ]] && [[ -d "$loc" ]]; then
+      STORY_LOCATION="$loc"
+      return 0
+    fi
+  fi
+
+  # 2. Check _bmad/bmm/config.yaml for implementation_artifacts path
+  if [[ -f "$BMM_CONFIG" ]]; then
+    local artifacts=$(grep -E "^implementation_artifacts:" "$BMM_CONFIG" 2>/dev/null | sed 's/implementation_artifacts:\s*//' | tr -d '"' | tr -d "'" | xargs)
+    if [[ -n "$artifacts" ]]; then
+      local stories_path="${artifacts}/stories"
+      if [[ -d "$stories_path" ]]; then
+        STORY_LOCATION="$stories_path"
+        return 0
+      fi
+    fi
+  fi
+
+  # 3. Fallback search order
+  for fallback in "_bmad-output/implementation-artifacts/stories" "_bmad-output/stories" "_bmad-output/epics"; do
+    if [[ -d "$fallback" ]]; then
+      STORY_LOCATION="$fallback"
+      return 0
+    fi
+  done
+
+  # No location found
+  STORY_LOCATION=""
+  return 1
+}
+
+# Validate story file has proper frontmatter (story_key: or status:)
+is_valid_story_file() {
+  local file="$1"
+  if [[ ! -f "$file" ]]; then
+    return 1
+  fi
+  # Check for story frontmatter markers
+  if grep -qE "^(story_key:|status:|Story ID:)" "$file" 2>/dev/null; then
+    return 0
+  fi
+  # Also check for story title pattern
+  if grep -qE "^# Story [0-9]" "$file" 2>/dev/null; then
+    return 0
+  fi
+  return 1
+}
 
 # Colors for output
 RED='\033[0;31m'
@@ -159,27 +219,52 @@ fi
 echo -n "[ ] Story files exist... "
 MISSING_STORIES=0
 FOUND_STORIES=0
+VALID_STORIES=0
 
-# Find story files in epics directory
-if [[ -d "$BMAD_OUTPUT/epics" ]]; then
+# Detect story location using priority order
+detect_story_location
+
+if [[ -n "$STORY_LOCATION" ]]; then
+  # Find story files in detected location
   while IFS= read -r story_file; do
     if [[ -f "$story_file" ]]; then
       FOUND_STORIES=$((FOUND_STORIES + 1))
+      # Validate story has proper frontmatter
+      if is_valid_story_file "$story_file"; then
+        VALID_STORIES=$((VALID_STORIES + 1))
+      fi
     else
       MISSING_STORIES=$((MISSING_STORIES + 1))
     fi
-  done < <(find "$BMAD_OUTPUT/epics" -name "story-*.md" 2>/dev/null || true)
+  done < <(find "$STORY_LOCATION" -name "*.md" -type f 2>/dev/null || true)
+
+  # Also search subdirectories (for epic-based organization)
+  if [[ $FOUND_STORIES -eq 0 ]]; then
+    while IFS= read -r story_file; do
+      if [[ -f "$story_file" ]]; then
+        FOUND_STORIES=$((FOUND_STORIES + 1))
+        if is_valid_story_file "$story_file"; then
+          VALID_STORIES=$((VALID_STORIES + 1))
+        fi
+      fi
+    done < <(find "$STORY_LOCATION" -name "story-*.md" -type f 2>/dev/null || true)
+  fi
 fi
 
-if [[ $FOUND_STORIES -gt 0 ]]; then
+if [[ $VALID_STORIES -gt 0 ]]; then
   if [[ $MISSING_STORIES -gt 0 ]]; then
-    echo -e "${YELLOW}⚠${NC} ($FOUND_STORIES found, $MISSING_STORIES missing)"
+    echo -e "${YELLOW}⚠${NC} ($VALID_STORIES valid stories in $STORY_LOCATION, $MISSING_STORIES missing)"
   else
-    echo -e "${GREEN}✓${NC} ($FOUND_STORIES stories found)"
+    echo -e "${GREEN}✓${NC} ($VALID_STORIES stories in $STORY_LOCATION)"
   fi
+elif [[ $FOUND_STORIES -gt 0 ]]; then
+  echo -e "${YELLOW}⚠${NC} ($FOUND_STORIES .md files found, but none with story frontmatter)"
+  echo "    → Story files should contain 'story_key:', 'status:', or '# Story X.X' header"
 else
   echo -e "${RED}✗${NC}"
-  echo "    → No story files found in $BMAD_OUTPUT/epics/"
+  echo "    → No story files found"
+  echo "    → Searched: sprint-status.yaml (story_location), _bmad/bmm/config.yaml (implementation_artifacts)"
+  echo "    → Fallbacks: _bmad-output/implementation-artifacts/stories/, _bmad-output/stories/, _bmad-output/epics/"
   PREFLIGHT_PASSED=false
 fi
 
@@ -285,6 +370,7 @@ else
   },
   "config": {
     "sprint_status_file": "$SPRINT_STATUS",
+    "story_location": "$STORY_LOCATION",
     "architecture_doc": "$ARCH_DOC",
     "spec_doc": "$SPEC_DOC"
   }

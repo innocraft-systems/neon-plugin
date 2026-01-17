@@ -264,10 +264,14 @@ BMAD methodology with cross-context persistence for long-running story execution
 **Commands:**
 - `/brun` - Run BMAD story with cross-context persistence harness
 - `/bstop` - Stop BMAD story harness
+- `/sprint-run` - Run all stories in sprint automatically with dependency tracking
+- `/sprint-stop` - Stop the active sprint runner
 - `/eval-init` - Initialize eval framework for a project
 - `/eval-run` - Run evaluation tasks
 - `/eval-report` - Generate evaluation report
 - `/eval-task-add` - Add a new evaluation task
+- `/eval-cancel` - Cancel active eval loop
+- `/eval-help` - Show BMAD-Evals help documentation
 
 **Agents:** `eval-orchestrator`, `eval-analyst`, `eval-grader`
 
@@ -276,6 +280,7 @@ BMAD methodology with cross-context persistence for long-running story execution
 - Task checkpoint tracking
 - Git-based progress markers
 - Eval framework for testing AI agent performance
+- **Smart story location detection** - finds stories from sprint-status.yaml, bmm/config.yaml, or fallback paths
 
 [Full documentation](plugins/bmad-evals/README.md)
 

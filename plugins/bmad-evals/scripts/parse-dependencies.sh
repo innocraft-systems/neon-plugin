@@ -27,6 +27,47 @@ if [[ -z "$SPRINT_STATUS" ]] || [[ ! -f "$SPRINT_STATUS" ]]; then
 fi
 
 # ============================================
+# STORY LOCATION DETECTION
+# ============================================
+
+BMM_CONFIG="_bmad/bmm/config.yaml"
+STORY_LOCATION=""
+
+# Detect story location using priority order:
+#   1. story_location in sprint-status.yaml (authoritative)
+#   2. implementation_artifacts from _bmad/bmm/config.yaml + /stories
+#   3. Fallback search order
+
+# 1. Check sprint-status.yaml for story_location key
+if [[ -f "$SPRINT_STATUS" ]]; then
+  loc=$(grep -E "^story_location:" "$SPRINT_STATUS" 2>/dev/null | sed 's/story_location:\s*//' | tr -d '"' | tr -d "'" | xargs || true)
+  if [[ -n "$loc" ]] && [[ -d "$loc" ]]; then
+    STORY_LOCATION="$loc"
+  fi
+fi
+
+# 2. Check _bmad/bmm/config.yaml for implementation_artifacts path
+if [[ -z "$STORY_LOCATION" ]] && [[ -f "$BMM_CONFIG" ]]; then
+  artifacts=$(grep -E "^implementation_artifacts:" "$BMM_CONFIG" 2>/dev/null | sed 's/implementation_artifacts:\s*//' | tr -d '"' | tr -d "'" | xargs || true)
+  if [[ -n "$artifacts" ]]; then
+    stories_path="${artifacts}/stories"
+    if [[ -d "$stories_path" ]]; then
+      STORY_LOCATION="$stories_path"
+    fi
+  fi
+fi
+
+# 3. Fallback search order
+if [[ -z "$STORY_LOCATION" ]]; then
+  for fallback in "_bmad-output/implementation-artifacts/stories" "_bmad-output/stories" "_bmad-output/epics"; do
+    if [[ -d "$fallback" ]]; then
+      STORY_LOCATION="$fallback"
+      break
+    fi
+  done
+fi
+
+# ============================================
 # PARSE SPRINT STATUS YAML
 # ============================================
 
@@ -299,18 +340,32 @@ for story in "${READY_STORIES[@]}"; do
   file="${STORY_FILE[$story]:-}"
   epic="${STORY_EPIC[$story]:-}"
 
-  # If file path is empty, try to find it
+  # If file path is empty, try to find it using detected STORY_LOCATION
   if [[ -z "$file" ]]; then
-    # Try common patterns
-    for pattern in "_bmad-output/epics/$epic/stories/$story.md" "_bmad-output/epics/*/stories/$story.md" "docs/stories/$story.md"; do
-      found=$(find . -path "./$pattern" 2>/dev/null | head -1 || true)
-      if [[ -n "$found" ]]; then
-        file="$found"
-        break
-      fi
-    done
+    # First, try the detected story location
+    if [[ -n "$STORY_LOCATION" ]]; then
+      # Try direct match in story location
+      for pattern in "$STORY_LOCATION/$story.md" "$STORY_LOCATION/$epic/$story.md" "$STORY_LOCATION/*/$story.md"; do
+        found=$(find . -path "./$pattern" 2>/dev/null | head -1 || true)
+        if [[ -n "$found" ]]; then
+          file="$found"
+          break
+        fi
+      done
+    fi
 
-    # Fallback: search for story file
+    # If still not found, try legacy patterns
+    if [[ -z "$file" ]]; then
+      for pattern in "_bmad-output/implementation-artifacts/stories/$story.md" "_bmad-output/stories/$story.md" "_bmad-output/epics/$epic/stories/$story.md" "_bmad-output/epics/*/stories/$story.md" "docs/stories/$story.md"; do
+        found=$(find . -path "./$pattern" 2>/dev/null | head -1 || true)
+        if [[ -n "$found" ]]; then
+          file="$found"
+          break
+        fi
+      done
+    fi
+
+    # Final fallback: search for story file anywhere
     if [[ -z "$file" ]]; then
       found=$(find . -name "$story.md" -type f 2>/dev/null | head -1 || true)
       if [[ -n "$found" ]]; then
